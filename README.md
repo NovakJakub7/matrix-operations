@@ -38,6 +38,23 @@ int main (){
 
 ## Dokumentace
 
+### Struktury
+**matrix**
+Struktura reprezentující matici
+- 'm': počet řádků
+- 'n': počet sloupců
+- 'data': 2D pole obsahující hodnoty matice
+
+**error**
+Globální proměnná reprezentující chybový stav
+- vrací hodnoty 0-5
+- '0': bez chyby
+- '1': jiná chyba
+- '2': chyba alokace
+- '3': chyba otevření
+- '4': chyba zavírání
+- '5': chyba typu
+
 ### Inicializace
 
 **matrix\* initialize_matrix(int m, int n);**
