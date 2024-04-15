@@ -1,16 +1,17 @@
 # matrix-operations
 
-Jednoduchá knihovna pro práci s maticemi v jazyce C.
+Simple module for working with matrices written in C.
+Including basic unit testing for the library functions.
 
-## Instalace
-Pro použití této knihovny v rámci svého projektu můžete stáhnout zdrojové soubory přímo z tohoto repozitáře. Zde je odkaz ke stažení:
+## Instalation
+To use this library in your project, you can download the source files directly from this repository. Here is the download link:
 
-[Stáhnout zdrojové soubory](https://github.com/NovakJakub7/matrix-operations)
+[Download the source code here](https://github.com/NovakJakub7/matrix-operations)
 
-Po stažení můžete zahrnout zdrojové soubory knihovny do vašeho projektu a začít je používat podle potřeby.
+Once downloaded, you can include the library source files in your project and start using them as needed.
 
-## Příklad použití
-Ukázka použití knihovny pro vytvoření a operaci s maticemi.
+## Example
+Example how to use the module for creating and working with matrices.
 
 ```
 #include <stdio.h>
@@ -36,112 +37,115 @@ int main (){
 }
 ```
 
-## Dokumentace
+## Documentation
 
-### Struktury
+### Structures
 **matrix**
-Struktura reprezentující matici
-- 'm': počet řádků
-- 'n': počet sloupců
-- 'data': 2D pole obsahující hodnoty matice
+Structure representing a matrix
+- 'rows': number of rows
+- 'cols': number of columns
+- 'data': 2D array containing the matrix values
 
 **error**
-Globální proměnná reprezentující chybový stav
-- vrací hodnoty 0-5
-- '0': bez chyby
-- '1': jiná chyba
-- '2': chyba alokace
-- '3': chyba otevření
-- '4': chyba zavírání
-- '5': chyba typu
+Global variable representing error status
+- contains values 0-5
+- '0': no error
+- '1': other error
+- '2': allocation error
+- '3': opening error
+- '4': closing error
+- '5': type error
 
-### Inicializace
+### Initialization
 
-**matrix\* initialize_matrix(int m, int n);**
-Vytvoří matici velikosti m*n a alokuje paměť pro všechny její prvky.
-- 'm': počet řádků matice
-- 'n': počet sloupců matice
-- vrací ukazatel na nově vytvořenou matici
+**matrix\* initialize_matrix(int rows, int cols);**
+Creates a matrix and allocates an array for matrix elements.
+- 'rows': number of rows
+- 'cols': number of columns
+- returns a pointer to the created matrix
 
-**matrix\* create_zero_matrix(int m, int n);**
-Vytvoří nulovou matici velikosti m*n.
-- 'm': počet řádků matice
-- 'n': počet sloupců matice
-- vrací ukazatel na nově vytvořenou matici
+**matrix\* create_zero_matrix(int rows, int cols);**
+Creates a zero matrix.
+- 'rows': number of rows
+- 'cols': number of columns
+- returns a pointer to the created matrix
 
-**matrix\* create_unit_matrix(int m, int n);**
-Vytvoří jednotkovou matici velikosti m*n.
-- 'm': počet řádků matice
-- 'n': počet sloupců matice
-- vrací ukazatel na nově vytvořenou matici
+**matrix\* create_unit_matrix(int rows, int cols);**
+Creates a unit matrix.
+- 'rows': number of rows
+- 'cols': number of columns
+- returns a pointer to the created matrix
 
 **void destroy_matrix(matrix\* mat)**
-Uvolní paměť matice.
-- 'mat': ukazatel na matici
+Frees memory allocated for matrix.
+- 'mat': matrix pointer
 
 **void print_matrix(matrix\* mat);**
-Vypíše matici ve formátovaném stylu do konzole.
-- 'mat': ukazatel na matici
+Prints out matrix in a formatted style.
+- 'mat': matrix pointer
 
 ### Operace s maticemi
 
 **int get_size(matrix\* mat, int dimension);**
-Získá velikost matice podle dané dimenze. 1 - počet řádků, 2 - počet sloupců.
-- 'mat': ukazatel na matici
-- 'dimension': ukazatel na matici
-- vrací počet řádků nebo sloupců
+Returns the size of a matrix in dimension.
+Dimension = 1 for number of rows.
+Dimension = 2 for number of columns.
+- 'mat': matrix pointer
+- 'dimension': number specifying dimension
+- returns number of rows or columns
 
 **float get_value(matrix\* mat, int i, int j);**
-Získá hodnotu prvku matice na souřadnicích i,j.
-- 'mat': ukazatel na matici
-- 'i': i-tý řádek
-- 'j': j-tý sloupec
-- vrací hodnotu prvku jako číslo s řadovou čárkou
+Get the value of the element from the matrix in the i-th row and j-th column.
+- 'mat': matrix pointer
+- 'i': i-th row
+- 'j': j-th column
+- returns the value of the element as a number
 
 **void set_value(matrix\* mat, int i , int j, float value);**
-Vloží do matice hodnotu pro prvek na souřadnicích i,j.
-- 'mat': ukazatel na matici
-- 'i': i-tý řádek
-- 'j': j-tý sloupec
-- 'value': číslo s řadovou čárkou vloženo do matice
+Set the value of a matrix element in the i-th row and j-th column.
+- 'mat': matrix pointer
+- 'i': i-th row
+- 'j': j-th column
+- 'value': number to be set
 
 **matrix\* add(matrix\* mat1, matrix\* mat2);**
-Vytvoří matici, která vznikne součtem matic mat1 a mat2.
-- 'mat1': ukazatel na matici
-- 'mat2': ukazatel na matici
-- vrací ukazatel na nově vytvořenou matici
+Returns an addition of two matrices mat1 and mat2.
+- 'mat1': matrix pointer
+- 'mat2': matrix pointer
+- returns a matrix pointer to the created matrix
 
 **matrix\* substract(matrix\* mat1, matrix\* mat2);**
-Vytvoří matici, která vznikne odečtením matic mat1 a mat2.
-- 'mat1': ukazatel na matici
-- 'mat2': ukazatel na matici
-- vrací ukazatel na nově vytvořenou matici
+Returns a substraction of matrices mat1 and mat2.
+- 'mat1': matrix pointer
+- 'mat2': matrix pointer
+- returns a matrix pointer to the created matrix
 
 **matrix\* multiply_by_scalar(matrix\* mat, float scalar);**
-Vytvoří matici, vynásobením matice skalárem.
-- 'mat': ukazatel na matici
-- 'scalar': skalár násobící matici
-- vrací ukazatel na nově vytvořenou matici
+Return a matrix mat multiplied by a scalar.
+- 'mat': matrix pointer
+- 'scalar': number multiplying the matrix
+- returns a matrix pointer to the created matrix
 
 **matrix\* multiply_by_matrix(matrix\* mat1, matrix\* mat2);**
-Vytvoří matici, vzájemným vynásobením dvou matic.
-- 'mat1': ukazatel na matici
-- 'mat2': ukazatel na matici
-- vrací ukazatel na nově vytvořenou matici
+Returns a multiplication of two matrices mat1 and mat2.
+- 'mat1': matrix pointer
+- 'mat2': matrix pointer
+- returns a matrix pointer to the created matrix
 
 **matrix\* transpose(matrix\* mat);**
-Vytvoří matici, která vznikne jako transpozice matice mat.
-- 'mat': ukazatel na matici
-- vrací ukazatel na nově vytvořenou matici
+Returns a transposition of matrix mat.
+- 'mat': matrix pointer
+- returns a matrix pointer to the created matrix
 
 **matrix\* read_from_file(const char\* file, char delimiter);**
-Vytvoří matici, přečtením ze souboru.
-- 'file': název souboru
-- 'delimiter': oddělovací znak
-- vrací ukazatel na přečtenou matici
+Reads matrix from a text file.
+Every row represents a matrix row and elements must be seperated by separator.
+- 'file': file name
+- 'delimiter': separator character
+- return a matrix pointer to the read matrix
 
 **void save_to_file(matrix\* mat, const char\* file, char delimiter);**
-Uloží matici do souboru.
-- 'mat': ukazatel na matici
-- 'file': název souboru
-- 'delimiter': oddělovací znak
+Saves matrix to a file.
+- 'mat': matrix pointer
+- 'file': file name
+- 'delimiter': separator character
