@@ -47,14 +47,14 @@ Structure representing a matrix
 - 'data': 2D array containing the matrix values
 
 **error**
-Global variable representing error status
-- contains values 0-5
-- '0': no error
-- '1': other error
-- '2': allocation error
-- '3': opening error
-- '4': closing error
-- '5': type error
+Variable of enum type matrix_error representing error status
+- 'MATRIX_OK': no error
+- 'MATRIX_INVARGS': invalid argument values
+- 'MATRIX_ALLOCATION_ERROR': allocation error
+- 'MATRIX_OPENING_ERROR': opening error
+- 'MATRIX_CLOSING_ERROR': closing error
+- 'MATRIX_TYPE_ERROR': type error
+- 'MATRIX_OTHER_ERROR': other error
 
 ### Initialization
 
@@ -62,19 +62,19 @@ Global variable representing error status
 Creates a matrix and allocates an array for matrix elements.
 - 'rows': number of rows
 - 'cols': number of columns
-- returns a pointer to the created matrix
+- returns a pointer to the created matrix or NULL if error occurred
 
 **matrix\* create_zero_matrix(int rows, int cols);**
 Creates a zero matrix.
 - 'rows': number of rows
 - 'cols': number of columns
-- returns a pointer to the created matrix
+- returns a pointer to the created matrix or NULL if error occurred
 
 **matrix\* create_unit_matrix(int rows, int cols);**
 Creates a unit matrix.
 - 'rows': number of rows
 - 'cols': number of columns
-- returns a pointer to the created matrix
+- returns a pointer to the created matrix or NULL if error occurred
 
 **void destroy_matrix(matrix\* mat)**
 Frees memory allocated for matrix.
@@ -92,14 +92,14 @@ Dimension = 1 for number of rows.
 Dimension = 2 for number of columns.
 - 'mat': matrix pointer
 - 'dimension': number specifying dimension
-- returns number of rows or columns
+- returns number of rows or columns or 0 if error occurred
 
 **float get_value(matrix\* mat, int i, int j);**
 Get the value of the element from the matrix in the i-th row and j-th column.
 - 'mat': matrix pointer
 - 'i': i-th row
 - 'j': j-th column
-- returns the value of the element as a number
+- returns the value of the element as a number or 0 if error occurred
 
 **void set_value(matrix\* mat, int i , int j, float value);**
 Set the value of a matrix element in the i-th row and j-th column.
@@ -109,40 +109,40 @@ Set the value of a matrix element in the i-th row and j-th column.
 - 'value': number to be set
 
 **matrix\* add(matrix\* mat1, matrix\* mat2);**
-Returns an addition of two matrices mat1 and mat2.
+Creates a new matrix that is equal to an addition of two matrices mat1 and mat2.
 - 'mat1': matrix pointer
 - 'mat2': matrix pointer
-- returns a matrix pointer to the created matrix
+- returns a matrix pointer to the created matrix or NULL if error occurred
 
 **matrix\* substract(matrix\* mat1, matrix\* mat2);**
-Returns a substraction of matrices mat1 and mat2.
+Creates a new matrix that is equal to a substraction of matrices mat1 and mat2.
 - 'mat1': matrix pointer
 - 'mat2': matrix pointer
-- returns a matrix pointer to the created matrix
+- returns a matrix pointer to the created matrix or NULL if error occurred
 
 **matrix\* multiply_by_scalar(matrix\* mat, float scalar);**
-Return a matrix mat multiplied by a scalar.
+Creates a new matrix that is equal to a matrix mat multiplied by a scalar.
 - 'mat': matrix pointer
 - 'scalar': number multiplying the matrix
-- returns a matrix pointer to the created matrix
+- returns a matrix pointer to the created matrix or NULL if error occurred
 
 **matrix\* multiply_by_matrix(matrix\* mat1, matrix\* mat2);**
-Returns a multiplication of two matrices mat1 and mat2.
+Creates a new matrix that is equal to a multiplication of two matrices mat1 and mat2.
 - 'mat1': matrix pointer
 - 'mat2': matrix pointer
-- returns a matrix pointer to the created matrix
+- returns a matrix pointer to the created matrix or NULL if error occurred
 
 **matrix\* transpose(matrix\* mat);**
-Returns a transposition of matrix mat.
+Creates a new matrix that is equal to a transposition of matrix mat.
 - 'mat': matrix pointer
-- returns a matrix pointer to the created matrix
+- returns a matrix pointer to the created matrix or NULL if error occurred
 
 **matrix\* read_from_file(const char\* file, char delimiter);**
-Reads matrix from a text file.
-Every row represents a matrix row and elements must be seperated by separator.
+Creates a new matrix by reading it from a text file.
+Every row in the file represents a row in a matrix and elements must be seperated by some separator character.
 - 'file': file name
 - 'delimiter': separator character
-- return a matrix pointer to the read matrix
+- return a matrix pointer to the read matrix or NULL if error occurred
 
 **void save_to_file(matrix\* mat, const char\* file, char delimiter);**
 Saves matrix to a file.
