@@ -1,7 +1,8 @@
 # matrix-operations
 
 Simple module for working with matrices written in C.
-Including basic unit testing for the library functions.
+Including some basic unit testing for the library functions and error logging.
+Feel free to improve and/or to change what you need.
 
 ## Instalation
 To use this library in your project, you can download the source files directly from this repository. Here is the download link:
@@ -23,13 +24,11 @@ int main (){
     matrix* mat1 = create_zero_matrix(5, 5);
     matrix* mat2 = create_unit_matrix(5, 5);
     matrix* result;
-    set_value(mat1, 1, 2, 4);
-    printf("Error: %d\n", error);
 
+    set_value(mat1, 1, 2, 4);
     result = multiply_by_matrix(mat1, mat2);
     print_matrix(result);
-    
-    printf("Error: %d\n", error);
+
     destroy_matrix(mat1);
     destroy_matrix(mat2);
     
@@ -39,6 +38,8 @@ int main (){
 
 ## Documentation
 
+- to enable error logs use "-DENABLE_LOGGING" flag
+
 ### Structures
 **matrix**
 Structure representing a matrix
@@ -47,7 +48,7 @@ Structure representing a matrix
 - 'data': 2D array containing the matrix values
 
 **error**
-Variable of enum type matrix_error representing error status
+Variable of enum type **matrix_error** representing error status. Possible **matrix_error** values:
 - 'MATRIX_OK': no error
 - 'MATRIX_INVARGS': invalid argument values
 - 'MATRIX_ALLOCATION_ERROR': allocation error
@@ -55,6 +56,10 @@ Variable of enum type matrix_error representing error status
 - 'MATRIX_CLOSING_ERROR': closing error
 - 'MATRIX_TYPE_ERROR': type error
 - 'MATRIX_OTHER_ERROR': other error
+
+**const char\* matrix_error_str(matrix_error error);**
+- 'error': value of error variable
+- returns readable error string based on error
 
 ### Initialization
 
