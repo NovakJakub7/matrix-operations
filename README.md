@@ -1,7 +1,7 @@
 # matrix-operations
 
 Simple module for working with matrices written in C.
-Including some basic unit testing for the library functions and error logging.
+Including some basic unit testing for the library functions with Unity and error logging.
 Feel free to improve and/or to change what you need.
 
 ## Instalation
